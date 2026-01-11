@@ -1,0 +1,5 @@
+*.exe
+*.error
+*.output
+*.input
+.vscode/

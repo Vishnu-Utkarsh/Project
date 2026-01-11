@@ -1,3 +1,6 @@
+#ifndef TEMPLATE
+#define TEMPLATE
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -194,3 +197,5 @@ long long NCR(const long long n, const long long r)   // For large values of n a
     if(n < r)   return 0;
     return division(factorial(n), multiplication(factorial(r), factorial(n - r)));
 }
+
+#endif
