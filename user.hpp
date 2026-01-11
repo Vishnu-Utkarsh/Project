@@ -11,25 +11,27 @@ private:
 
 public:
     // constructor
-    User() {}
-    User(int id, const std::string &name, const std::string &pass) : userId(id), username(name), password(pass), rating(0) {}
+    User();
+    User(int id, const std::string &name, const std::string &pass);
+    User(int id, const std::string &name, const std::string &pass, int rate);
 
     // getters
-    int getUserId() { return userId; }
-    std::string getusername() { return username; }
-    int getrating() { return rating; }
+    int getUserId();
+    std::string getusername();
+    std::string getpassword();
+    int getrating();
 
     // authentication
-    bool checkPassword(const std::string &password) { return password == this -> password; }
+    bool checkPassword(const std::string &password);
 
-    // trust logic(+ve/-ve)
-    void updateRating(int rating) { this -> rating = rating; }
+    // change rating
+    void updateRating(int rating);
 };
 
 
-void _print(User &user)
-    {   cerr << user.getUserId() << " : " << user.getusername() << " - " << user.getrating() << endl;}
-void print(User &user)
-    {   cout << user.getUserId() << " : " << user.getusername() << " - " << user.getrating() << endl;}
+void _print(User user)
+    {   cerr << user.getUserId() << " : " << user.getusername() << " - " << user.getrating();}
+void print(User user)
+    {   cout << user.getUserId() << " : " << user.getusername() << " - " << user.getrating();}
 
 #endif

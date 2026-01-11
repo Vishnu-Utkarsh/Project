@@ -1,8 +1,14 @@
+#include <ctime>
+#include <iomanip>
+#include <string>
+
 #include "Template.hpp"
-#include "user.hpp"
+#include "data.cpp"
+#include "operation.cpp"
 
 void displayOptions()
 {
+    cout << std::endl;
     #ifdef _WIN32
         std::system("cls"); // For Windows
     #else
@@ -10,12 +16,12 @@ void displayOptions()
         std::system("clear"); 
     #endif
 
-    cout << "----------------------------------------------------" << endl;
-    cout << "Enter 1 to enter user data:" << endl;
-    cout << "Enter 2 to dipplay all user's data:" << endl;
-    cout << "Enter 3 to login to user's profile:" << endl;
-    cout << "Enter -1 to Exit:" << endl;
-    cout << endl;
+    std::cout << "----------------------------------------------------" << std::endl;
+    std::cout << "Enter 1 to create new user account:" << std::endl;
+    std::cout << "Enter 2 to dipplay all user's data:" << std::endl;
+    std::cout << "Enter 3 to login to user's profile:" << std::endl;
+    std::cout << "Enter -1 to Exit:" << std::endl;
+    std::cout << std::endl;
 }
 
 bool operate(int task)
@@ -24,46 +30,46 @@ bool operate(int task)
     {
         case 1:
         {
-            int n;
-            cin >> n;
-
-            for (int i = 0; i < n; i++)
-            {
-                int x, r;
-                string y, z;
-                cin >> x >> y >> z >> r;
-
-                User user(x, y, z);
-
-                if(r != -1) user.updateRating(r);
-                debug(user);
-                print(user);
-            }
+            createAccount();
             break;
         }
         case 2:
         {
+            displayUserData();
+            break;
+        }
+        case 3:
+        {
             string name, pass;
 
-            cout << endl << "Enter userID: ";
-            cin >> name;
-            cout << endl << "Enter password: ";
-            cin >> pass;
+            std::cout << std::endl << "Enter userID: ";
+            std::cin >> name;
+            std::cout << std::endl << "Enter password: ";
+            std::cin >> pass;
 
             break;
         }
         case -1:
         {
+            saveUserData("userData.csv");
+
+            std::time_t now = std::time(0);
+            std::tm *local_time_struct = std::localtime(&now);
+
+            std::cout << "\n\n Data Updated by: " << std::put_time(local_time_struct, "%Y-%m-%d %H:%M:%S");
+            cout << "\n~~Exit~~";
+
             return false;
             break;
         }
         default:
         {
-            cout << "Enter valid operation !" << endl;
+            std::cout << "Enter valid operation !" << std::endl;
         }
     }
     return true;
 }
+
 int main()
 {
     fastio;
@@ -74,10 +80,12 @@ int main()
     freopen("error.txt", "w", stderr);
     #endif
 
+    readUserData("userData.csv");
+
     while(true)
     {
         int T;
-        cin >> T;
+        std::cin >> T;
         displayOptions();
 
         if(! operate(T))
