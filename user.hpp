@@ -1,6 +1,5 @@
-#ifdef USER_H
-#endif
-#define USER_H
+#ifndef USER
+#define USER
 
 #include "Template.hpp"
 
@@ -32,3 +31,5 @@ void _print(User &user)
     {   cerr << user.getUserId() << " : " << user.getusername() << " - " << user.getrating() << endl;}
 void print(User &user)
     {   cout << user.getUserId() << " : " << user.getusername() << " - " << user.getrating() << endl;}
+
+#endif
