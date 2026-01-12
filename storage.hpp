@@ -3,7 +3,6 @@
 
 #include "user.hpp"
 
-set<int> vacantID;
-unordered_map<int, User> users;
+unordered_map<string, User> users;
 
 #endif

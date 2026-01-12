@@ -6,17 +6,16 @@
 struct User
 {
 private:
-    int userId, rating;
+    int rating;
     std::string username, password;
 
 public:
     // constructor
     User();
-    User(int id, const std::string &name, const std::string &pass);
-    User(int id, const std::string &name, const std::string &pass, int rate);
+    User(const std::string &name, const std::string &pass);
+    User(const std::string &name, const std::string &pass, int rate);
 
     // getters
-    int getUserId();
     std::string getusername();
     std::string getpassword();
     int getrating();
@@ -30,8 +29,8 @@ public:
 
 
 void _print(User user)
-    {   cerr << user.getUserId() << " : " << user.getusername() << " - " << user.getrating();}
+    {   cerr << user.getusername() << " : " << user.getpassword() << " - " << user.getrating();}
 void print(User user)
-    {   cout << user.getUserId() << " : " << user.getusername() << " - " << user.getrating();}
+    {   cout << user.getrating();}
 
 #endif

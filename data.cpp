@@ -6,8 +6,10 @@
 #include <sstream>
 #include <fstream>
 
+// show all users
 void displayUserData()
 {
+    cout << "Username Rating" << endl;
     print(users);
 }
 
@@ -23,10 +25,6 @@ void readUserData(const std::string &filename)
         return;
     }
 
-    // vacantID.reserve(1e5 + 1);
-    for (int i = 1; i <= 1e5; i++)
-        vacantID.insert(i);
-
     while (std::getline(file, line))
     {
         std::stringstream ss(line);
@@ -41,11 +39,10 @@ void readUserData(const std::string &filename)
         if (row_fields.empty())
             continue;
 
-        int userID = stoi(row_fields[0]), rating = stoi(row_fields[3]);
-        string username = row_fields[1], password = row_fields[2];
+        int rating = stoi(row_fields[2]);
+        string username = row_fields[0], password = row_fields[1];
 
-        vacantID.erase(userID);
-        users[userID] = User(userID, username, password, rating);
+        users[username] = User(username, password, rating);
     }
 
     file.close();
@@ -67,10 +64,11 @@ void saveUserData(const std::string &filename)
 
     for (auto &user : users)
     {
-        int userID = user.first, rating = user.second.getrating();
-        string username = user.second.getusername(), password = user.second.getpassword();
+        User data = user.second;
+        int rating = data.getrating();
+        string username = data.getusername(), password = data.getpassword();
 
-        file << userID << ',' << username << ',' << password << ',' << rating << std::endl;
+        file << username << ',' << password << ',' << rating << std::endl;
     }
 
     file.close();
@@ -78,24 +76,36 @@ void saveUserData(const std::string &filename)
     return;
 }
 
+// Create Account
 void createAccount()
 {
-    int userID = *vacantID.begin();
-    vacantID.erase(vacantID.begin());
     string username, password;
 
-    cout << std::endl
-         << "Enter new username: ";
-    std::cin >> username;
+    while(true)
+    {
+        std::cout << std::endl
+            << "Enter new username: ";
+        std::cin >> username;
 
-    cout << std::endl
+        if(! users.count(username))
+            break;
+
+        std::cout << std::endl
+                  << "Username Already exist" << std::endl
+                  << "Try Again !" << std::endl;
+    }
+
+    std::cout << std::endl
          << "Create password: ";
     std::cin >> password;
 
-    cout << std::endl
-         << "Your userID is: " << userID;
-
-    User user(userID, username, password);
+    User user(username, password);
     debug(user);
-    users[userID] = User(userID, username, password);
+    users[username] = User(username, password);
+}
+
+// User Login
+void userLogin()
+{
+    
 }

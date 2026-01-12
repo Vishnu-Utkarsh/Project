@@ -3,10 +3,9 @@
 
 // forward declaration
 User::User() {}
-User::User (int id, const std::string &name, const std::string &pass) : userId(id), username(name), password(pass), rating(0) {}
-User::User (int id, const std::string &name, const std::string &pass, int rating) : userId(id), username(name), password(pass), rating(rating) {}
+User::User (const std::string &name, const std::string &pass) : username(name), password(pass), rating(0) {}
+User::User (const std::string &name, const std::string &pass, int rating) : username(name), password(pass), rating(rating) {}
 
-int User::getUserId()  { return userId; }
 std::string User::getusername() { return username; }
 std::string User::getpassword() { return password; }
 int User::getrating() { return rating; }

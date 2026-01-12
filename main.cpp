@@ -18,8 +18,8 @@ void displayOptions()
 
     std::cout << "----------------------------------------------------" << std::endl;
     std::cout << "Enter 1 to create new user account:" << std::endl;
-    std::cout << "Enter 2 to dipplay all user's data:" << std::endl;
-    std::cout << "Enter 3 to login to user's profile:" << std::endl;
+    std::cout << "Enter 2 to dipplay user's data:" << std::endl;
+    std::cout << "Enter 3 to login to your account:" << std::endl;
     std::cout << "Enter -1 to Exit:" << std::endl;
     std::cout << std::endl;
 }
@@ -40,13 +40,7 @@ bool operate(int task)
         }
         case 3:
         {
-            string name, pass;
-
-            std::cout << std::endl << "Enter userID: ";
-            std::cin >> name;
-            std::cout << std::endl << "Enter password: ";
-            std::cin >> pass;
-
+            userLogin();
             break;
         }
         case -1:
