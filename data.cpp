@@ -99,9 +99,9 @@ void createAccount()
          << "Create password: ";
     std::cin >> password;
 
-    User user(username, password);
-    debug(user);
-    users[username] = User(username, password);
+    User newUser(username, password);
+    debug(newUser);
+    users[username] = newUser;
 }
 
 // User Login

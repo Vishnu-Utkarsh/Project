@@ -4,7 +4,6 @@
 
 #include "Template.hpp"
 #include "data.cpp"
-#include "operation.cpp"
 
 void displayOptions()
 {
