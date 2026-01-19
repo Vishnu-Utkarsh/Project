@@ -3,47 +3,55 @@
 
 #include "Template.hpp"
 
-struct User
+class User
 {
 private:
-    int rating;
+    bool busy;
     std::string username, password;
 
 public:
     // constructor
     User();
     User(const std::string &name, const std::string &pass);
-    User(const std::string &name, const std::string &pass, int rate);
+    User(const std::string &name, const std::string &pass, const bool status);
 
     // getters
-    std::string getusername();
-    std::string getpassword();
-    int getrating();
+    std::string getUsername();
+    std::string getPassword();
+    bool getStatus();
 
     // authentication
     bool checkPassword(const std::string &password);
 
-    // change rating
-    void updateRating(int rating);
+    // switch status
+    void switchStatus();
+
+    // output operator (<<)
+    friend std::ostream& operator<<(std::ostream& os, const User &user)
+    {
+        os << "username: " << user.username << "\t";
+        os << "status: " << (user.busy ? "Booked" : "Not Booked") << "\t";
+        return os;
+    }
 };
 
 // forward declaration
 User::User() {}
-User::User (const std::string &name, const std::string &pass) : username(name), password(pass), rating(0) {}
-User::User (const std::string &name, const std::string &pass, int rating) : username(name), password(pass), rating(rating) {}
+User::User (const std::string &name, const std::string &pass) : username(name), password(pass), busy(false) {}
+User::User (const std::string &name, const std::string &pass, const bool status) : username(name), password(pass), busy(status) {}
 
-std::string User::getusername() { return username; }
-std::string User::getpassword() { return password; }
-int User::getrating() { return rating; }
+std::string User::getUsername() { return username; }
+std::string User::getPassword() { return password; }
+bool User::getStatus() { return busy; }
 
 bool User::checkPassword(const std::string &password) { return password == this -> password; }
 
-void User::updateRating(int rating) { this -> rating = rating; }
+void User::switchStatus() { busy ^= true; }
 
 
-void _print(User user)
-    {   cerr << user.getusername() << " : " << user.getpassword() << " - " << user.getrating();}
+void _print(User &user)
+    {   cerr << user.getUsername() << " : " << user.getPassword() << " - " << user.getStatus(); }
 void print(User user)
-    {   cout << user.getrating();}
+    {   cout << user << endl; }
 
 #endif

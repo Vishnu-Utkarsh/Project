@@ -4,6 +4,7 @@
 
 #include "Template.hpp"
 #include "data.cpp"
+#include "court.hpp"
 
 void displayOptions()
 {
@@ -17,7 +18,7 @@ void displayOptions()
 
     std::cout << "----------------------------------------------------" << std::endl;
     std::cout << "Enter 1 to create new user account:" << std::endl;
-    std::cout << "Enter 2 to dipplay user's data:" << std::endl;
+    std::cout << "Enter 2 to display user's data:" << std::endl;
     std::cout << "Enter 3 to login to your account:" << std::endl;
     std::cout << "Enter -1 to Exit:" << std::endl;
     std::cout << std::endl;

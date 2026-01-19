@@ -79,7 +79,7 @@ template<typename T> void _print(priority_queue<T> v)
 template<typename T> void _print(queue<T> v)
     {   cerr << '>'; while(! v.empty()) { cerr << " "; _print(v.front()); v.pop();}}
 template<typename T> void _print(deque<T> v)
-    {   cerr << '>'; while(! v.empty()) { cerr << " "; _print(v.front()); v.pop();}}
+    {   cerr << '>'; for (auto i : v) { cerr << " ";  _print(i);}}
 template<typename T> void _print(stack<T> v)
     {   cerr << '>'; while(! v.empty()) { cerr << " "; _print(v.top()); v.pop();}}
 

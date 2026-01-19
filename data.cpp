@@ -9,8 +9,9 @@
 // show all users
 void displayUserData()
 {
-    cout << "Username Rating" << endl;
-    print(users);
+    cout << "Username Status" << endl;
+    for(auto &data : users)
+        print(data.second);
 }
 
 // read from CSV file
@@ -39,10 +40,10 @@ void readUserData(const std::string &filename)
         if (row_fields.empty())
             continue;
 
-        int rating = stoi(row_fields[2]);
+        bool status = stoi(row_fields[2]);
         string username = row_fields[0], password = row_fields[1];
 
-        users[username] = User(username, password, rating);
+        users[username] = User(username, password, status);
     }
 
     file.close();
@@ -65,14 +66,16 @@ void saveUserData(const std::string &filename)
     for (auto &user : users)
     {
         User data = user.second;
-        int rating = data.getrating();
-        string username = data.getusername(), password = data.getpassword();
+        bool status = data.getStatus();
+        string username = data.getUsername(), password = data.getPassword();
 
-        file << username << ',' << password << ',' << rating << std::endl;
+        file << username << ',' << password << ',' << status << std::endl;
     }
 
     file.close();
     std::cerr << "CSV file created and data written successfully." << std::endl;
+
+    debug(users);
     return;
 }
 
