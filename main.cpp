@@ -62,13 +62,10 @@ int main()
 
     readUserData("userData.csv");
 
-    while(true)
+    int T;
+    do
     {
-        int T;
-        std::cin >> T;
         displayOptions();
-
-        if(! operate(T))
-            return 0;
-    }
+        std::cin >> T;
+    }   while (operate(T));
 }

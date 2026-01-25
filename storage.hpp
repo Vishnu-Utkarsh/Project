@@ -5,6 +5,6 @@
 #include "court.hpp"
 
 unordered_map<string, User> users;
-unordered_set<Court> courts;
+set<Court> courts;
 
 #endif

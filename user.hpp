@@ -50,7 +50,7 @@ void User::switchStatus() { busy ^= true; }
 
 
 void _print(User &user)
-    {   cerr << user.getUsername() << " : " << user.getPassword() << " - " << user.getStatus(); }
+    {   cerr << user.getUsername() << " : " << user.getPassword() << " - " << boolalpha << user.getStatus(); }
 void print(User user)
     {   cout << user << endl; }
 

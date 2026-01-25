@@ -48,14 +48,14 @@ void userLogin()
                   << "Try Again !" << std::endl;
     }
 
-    User user = users[username];
+    User loginUser = users[username];
     bool loggedIn = false;
 
     std::cout << std::endl
         << "Enter password: ";
     std::cin >> password;
 
-    loggedIn = user.checkPassword(password);
+    loggedIn = loginUser.checkPassword(password);
 
     if(! loggedIn)
     {
@@ -72,6 +72,7 @@ void userLogin()
         std::system("clear"); 
     #endif
 
+    debug(loginUser);
     std::cout << "Successfully Logged In !" << std::endl;
-    // Login(user);
+    // Login(loginUser);
 }
