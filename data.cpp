@@ -73,42 +73,8 @@ void saveUserData(const std::string &filename)
     }
 
     file.close();
-    std::cerr << "CSV file created and data written successfully." << std::endl;
+    std::cerr << std::endl << "CSV file created and data written successfully." << std::endl;
 
     debug(users);
     return;
-}
-
-// Create Account
-void createAccount()
-{
-    string username, password;
-
-    while(true)
-    {
-        std::cout << std::endl
-            << "Enter new username: ";
-        std::cin >> username;
-
-        if(! users.count(username))
-            break;
-
-        std::cout << std::endl
-                  << "Username Already exist" << std::endl
-                  << "Try Again !" << std::endl;
-    }
-
-    std::cout << std::endl
-         << "Create password: ";
-    std::cin >> password;
-
-    User newUser(username, password);
-    debug(newUser);
-    users[username] = newUser;
-}
-
-// User Login
-void userLogin()
-{
-    
 }

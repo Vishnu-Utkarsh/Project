@@ -4,7 +4,7 @@
 
 #include "Template.hpp"
 #include "data.cpp"
-#include "court.hpp"
+#include "operation.cpp"
 
 void displayOptions()
 {
@@ -28,21 +28,10 @@ bool operate(int task)
 {
     switch(task)
     {
-        case 1:
-        {
-            createAccount();
-            break;
-        }
-        case 2:
-        {
-            displayUserData();
-            break;
-        }
-        case 3:
-        {
-            userLogin();
-            break;
-        }
+        case 1: createAccount();    break;
+        case 2: displayUserData();  break;
+        case 3: userLogin();        break;
+
         case -1:
         {
             saveUserData("userData.csv");
@@ -56,10 +45,7 @@ bool operate(int task)
             return false;
             break;
         }
-        default:
-        {
-            std::cout << "Enter valid operation !" << std::endl;
-        }
+        default:    std::cout << "Enter valid operation !" << std::endl;
     }
     return true;
 }
