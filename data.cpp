@@ -14,6 +14,14 @@ void displayUserData()
         print(data.second);
 }
 
+// show courts
+void displayCourtData()
+{
+    cout << "Court Status" << endl;
+    for(auto &data : courts)
+        print(data.second);
+}
+
 // read from CSV file
 void readUserData(const std::string &filename)
 {
@@ -76,5 +84,8 @@ void saveUserData(const std::string &filename)
     std::cerr << std::endl << "CSV file created and data written successfully." << std::endl;
 
     debug(users);
+    cerr << endl;
+    debug(courts);
+    cerr << endl;
     return;
 }

@@ -19,7 +19,8 @@ void displayOptions()
     std::cout << "----------------------------------------------------" << std::endl;
     std::cout << "Enter 1 to create new user account:" << std::endl;
     std::cout << "Enter 2 to display user's data:" << std::endl;
-    std::cout << "Enter 3 to login to your account:" << std::endl;
+    std::cout << "Enter 3 to display court data:" << std::endl;
+    std::cout << "Enter 4 to login to your account:" << std::endl;
     std::cout << "Enter -1 to Exit:" << std::endl;
     std::cout << std::endl;
 }
@@ -30,7 +31,8 @@ bool operate(int task)
     {
         case 1: createAccount();    break;
         case 2: displayUserData();  break;
-        case 3: userLogin();        break;
+        case 3: displayCourtData(); break;
+        case 4: userLogin();        break;
 
         case -1:
         {
@@ -61,6 +63,10 @@ int main()
     #endif
 
     readUserData("userData.csv");
+
+    courts[0] = Badminton(1);
+    courts[1] = Badminton(2);
+    courts[2] = Badminton(3);
 
     int T;
     do
