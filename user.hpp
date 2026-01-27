@@ -26,11 +26,14 @@ public:
     // switch status
     void switchStatus();
 
+    // save file
+    string saveFile();
+
     // output operator (<<)
-    friend std::ostream& operator<<(std::ostream& os, const User &user)
+    friend std::ostream &operator<<(std::ostream &os, const User &user)
     {
-        os << "username: " << user.username << "\t";
-        os << "status: " << (user.busy ? "Booked" : "Not Booked") << "\t";
+        os << "username: " << user.username << "\t\t";
+        os << "status: " << (user.busy ? "Booked" : "Not Booked") << "\t\t";
         return os;
     }
 };

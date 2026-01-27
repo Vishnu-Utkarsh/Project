@@ -32,7 +32,7 @@ void _print(double x) {cerr << x;}
 void _print(long double x) {cerr << x;}
 void _print(char x) {cerr << '\'' << x << '\'';}
 void _print(const char* x) {cerr << '\"' << x << '\"';}
-void _print(const string& x) {cerr << '\"' << x << '\"';}
+void _print(const string &x) {cerr << '\"' << x << '\"';}
 void _print(const bitset<17>& x) {cerr << x;}
 void _print(bool x) {cerr << boolalpha << x;}
 
@@ -97,7 +97,7 @@ void print(double x) {cout << x << " ";}
 void print(long double x) {cout << x << " ";}
 void print(char x) {cout << x << " ";}
 void print(const char* x) {cout << x << " ";}
-void print(const string& x) {cout << x << " ";}
+void print(const string &x) {cout << x << " ";}
 void print(bool x) {cout << (x ? "YES" : "NO") << "\n";}
 
 template<typename T, typename V> void print(const pair<T, V> &x)

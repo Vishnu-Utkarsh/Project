@@ -36,7 +36,9 @@ bool operate(int task)
 
         case -1:
         {
+            std::cerr << std::endl;
             saveUserData("userData.csv");
+            saveCourtData("courtData.csv");
 
             std::time_t now = std::time(0);
             std::tm *local_time_struct = std::localtime(&now);
@@ -63,10 +65,8 @@ int main()
     #endif
 
     readUserData("userData.csv");
-
-    courts[0] = Badminton(1);
-    courts[1] = Badminton(2);
-    courts[2] = Badminton(3);
+    readCourtData("courtData.csv");
+    std::cerr << std::endl;
 
     int T;
     do

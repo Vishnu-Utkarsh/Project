@@ -4,6 +4,7 @@
 #include "Template.hpp"
 #include <ostream>
 
+// Court Type
 enum type
 {   INDOOR, OUTDOOR, GROUND };
 
@@ -19,12 +20,13 @@ std::ostream& operator<<(std::ostream& os, type courtType)
     return os;
 }
 
+// Parent Class Court
 class Court
 {
 private:
-    bool occupied;
-    int courtNumber;
-    string bookedBy;
+    bool available;
+    int courtNumber = 0;
+    string courtName, bookedBy;
     type courtType;
 
 protected:
@@ -35,13 +37,19 @@ protected:
 public:
     // constructor
     Court();
-    Court(type courtType);
-    Court(type courtType, int courtNumber);
+    Court(type courtType, string courtName);
+    Court(type courtType, string courtName, int courtNumber);
+    Court(type courtType, string courtName, string bookedBy, int courtNumber);
+
+    // save file
+    string saveFile();
 
     // output operator (<<)
-    friend std::ostream& operator<<(std::ostream& os, const Court &court)
+    friend std::ostream &operator<<(std::ostream &os, const Court &court)
     {
-        os << "Badminton Court " << court.courtNumber << "\t\t";
+        os << court.courtName;
+        if(court.courtNumber)   os << ' ' << court.courtNumber;
+        os << "\t\t";
         os << "type: " << court.courtType << "\t\t";
         os << "status: " << (court.checkAvailibility() ? "Available" : "Not Available") << "\t\t";
         return os;
@@ -49,45 +57,105 @@ public:
 };
 
 // forward declaration
-Court::Court() : occupied(false) {}
-Court::Court(type courtType) : occupied(false), courtType(courtType) {}
-Court::Court(type courtType, int courtNumber) : occupied(false), courtType(courtType), courtNumber(courtNumber) {}
+Court::Court() : available(true) {}
+Court::Court(type courtType, string courtName) : available(true), courtName(courtName), courtType(courtType) {}
+Court::Court(type courtType, string courtName, int courtNumber) : available(true), courtName(courtName), courtType(courtType), courtNumber(courtNumber) {}
+Court::Court(type courtType, string courtName, string bookedBy, int courtNumber = 0) : available(false), courtName(courtName), courtType(courtType), bookedBy(bookedBy), courtNumber(courtNumber) {}
 
-void Court::switchStatus() { occupied ^= true; }
-bool Court::checkAvailibility() const { return ! occupied; }
-
+void Court::switchStatus() { available ^= true; }
+bool Court::checkAvailibility() const { return available; }
 bool Court::book(const string &name)
 {
-    if(occupied)    return false;
+    if(! available) return false;
 
-    occupied = true;
+    available = false;
     bookedBy = name;
     return true;
 }
 
-
+// Derived Class Badminton
 class Badminton : public Court
 {
 public:
     // constructor
     Badminton();
     Badminton(const int number);
-
+    Badminton(const int number, string bookedBy);
 };
 
 // forward declaration
-Badminton::Badminton() : Court(INDOOR) {}
-Badminton::Badminton(const int number) : Court(INDOOR, number) {}
-// Badminton::Court::type Court::courtType() { return INDOOR; }
+Badminton::Badminton() : Court(INDOOR, "Badminton Court") {}
+Badminton::Badminton(const int number) : Court(INDOOR, "Badminton Court", number) {}
+Badminton::Badminton(const int number, string bookedBy) : Court(INDOOR, "Badminton Court", bookedBy, number) {}
 
-void _print(type &courtType)
-    {   cout << courtType;}
+// Derived Class Basketball
+class Basketball : public Court
+{
+public:
+    // constructor
+    Basketball();
+    Basketball(const int number);
+    Basketball(const int number, string bookedBy);
+};
+
+// forward declaration
+Basketball::Basketball() : Court(OUTDOOR, "Basketball Court") {}
+Basketball::Basketball(const int number) : Court(OUTDOOR, "Basketball Court", number) {}
+Basketball::Basketball(const int number, string bookedBy) : Court(OUTDOOR, "Basketball Court", bookedBy, number) {}
+
+// Derived Class Volleyball
+class Volleyball : public Court
+{
+public:
+    // constructor
+    Volleyball();
+    Volleyball(const int number);
+    Volleyball(const int number, string bookedBy);
+};
+
+// forward declaration
+Volleyball::Volleyball() : Court(INDOOR, "Volleyball Court") {}
+Volleyball::Volleyball(const int number) : Court(INDOOR, "Volleyball Court", number) {}
+Volleyball::Volleyball(const int number, string bookedBy) : Court(INDOOR, "Volleyball Court", bookedBy, number) {}
+
+// Derived Class Football
+class Football : public Court
+{
+public:
+    // constructor
+    Football();
+    Football(const int number);
+    Football(const int number, string bookedBy);
+};
+
+// forward declaration
+Football::Football() : Court(GROUND, "Football Ground") {}
+Football::Football(const int number) : Court(GROUND, "Football Ground", number) {}
+Football::Football(const int number, string bookedBy) : Court(GROUND, "Football Ground", bookedBy, number) {}
+
+// Derived Class Cricket
+class Cricket : public Court
+{
+public:
+    // constructor
+    Cricket();
+    Cricket(const int number);
+    Cricket(const int number, string bookedBy);
+};
+
+// forward declaration
+Cricket::Cricket() : Court(GROUND, "Cricket Ground") {}
+Cricket::Cricket(const int number) : Court(GROUND, "Cricket Ground", number) {}
+Cricket::Cricket(const int number, string bookedBy) : Court(GROUND, "Cricket Ground", bookedBy, number) {}
+
+
+void _print(type courtType)
+    {   cerr << courtType; }
 void print(type courtType)
-    {   cout << courtType << endl; }
+    {   cout << courtType; }
 
-
-void _print(Court &court)
-    {   cerr << court;}
+void _print(Court court)
+    {   cerr << endl << court; }
 void print(Court &court)
     {   cout << court << endl; }
 
